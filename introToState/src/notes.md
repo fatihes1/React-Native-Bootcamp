@@ -80,3 +80,114 @@ const styles = StyleSheet.create({
 export default App;
 
 ```
+
+
+## Following the state value/changes with useEffect
+```
+const App = () => {
+  const [number, setNumber] = useState(0);
+  const [counter, setCounter] = useState(0);
+
+  // console.log('render'); her bir up butonunda(state güncellemesinde) 
+  // bu component tekrar render edilir.
+  useEffect(() => {
+    console.log("Number Updated : " + number);
+  }, [number]);
+
+  useEffect(() => {
+    console.log("Counter Updated : " + counter);
+  }, [counter])
+
+  return (
+    <SafeAreaView>
+      <Text> Hello Lifecycle Topic</Text>
+      <Text>Number ---- {number}</Text>
+      <Text>Counter ---- {counter}</Text>
+      <Button title="Up !" onPress={() => setNumber(number+1)} />
+      <Button title="Up 100 times !" onPress={() => setCounter(counter + 100)} />
+    </SafeAreaView>
+  )
+}
+```
+
+## Using useEffect as a 'mounted' func
+
+```
+const App = () => {
+  const [number, setNumber] = useState(0);
+  const [counter, setCounter] = useState(0);
+
+  // console.log('render'); her bir up butonunda(state güncellemesinde) 
+  // bu component tekrar render edilir.
+  useEffect(() => {
+    console.log("Number Updated : " + number);
+  }, [number]);
+
+  useEffect(() => {
+    console.log("Counter Updated : " + counter);
+  }, [counter])
+
+  return (
+    <SafeAreaView>
+      <Text> Hello Lifecycle Topic</Text>
+      <Text>Number ---- {number}</Text>
+      <Text>Counter ---- {counter}</Text>
+      <Button title="Up !" onPress={() => setNumber(number+1)} />
+      <Button title="Up 100 times !" onPress={() => setCounter(counter + 100)} />
+    </SafeAreaView>
+  )
+}
+```
+
+## If we wanted to trigger something else when a component die --> Clean up function is useEffect
+
+```
+import React, {useState, useEffect} from "react";
+import {View, SafeAreaView, Text, Button, StyleSheet, FlatList, Switch} from "react-native";
+
+
+const App = () => {
+  const [helloFlag, sethelloFlag] = useState(true);
+
+
+  useEffect(() => {
+    console.log("Mounting");
+  }, [])
+  
+  const updateFlag = () => {
+    console.log("First log - number's value : " + helloFlag);
+    sethelloFlag(!helloFlag);
+    console.log("First log - number's value : " + helloFlag);
+  }
+
+  return (
+    <SafeAreaView>
+      <Text> Hello Lifecycle Topic</Text>
+      <Text>Number ---- {helloFlag}</Text>
+      <Button title="Up !" onPress={updateFlag} />
+      {helloFlag && <Hello />}
+    </SafeAreaView>
+  )
+}
+
+
+
+export default App;
+
+// Bu durumda hello dışarıdan içeri 'import' anahtar kelimesi ile alınmış
+// Bir component gibi düşünelim
+
+const Hello = () => {
+  useEffect(() => {
+    console.log("Mounted !");
+
+    return () => {
+      console.log("Removed !");
+    }
+  }, []);
+  return (
+    <Text style={{backgroundColor : 'aqua', padding: 10, marginTop: 5}}>I'm hello componenet</Text>
+  )
+}
+```
+
