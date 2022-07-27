@@ -10,12 +10,16 @@ import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 
 
-const Products = () => {
+const Products = ({navigation}) => {
     // CUSTOM HOOK USAGE
-    const {error, loading, data} = useFetch(Config.API_URL + "asddsa");
+    const {error, loading, data} = useFetch(Config.API_URL);
+
+    const handleProductSelect = id => {
+        navigation.navigate("DetailPage", {id});
+    }
 
     const renderProduct = ({item}) => {
-       return <ProductCard product={item} />
+       return <ProductCard product={item} onSelect={() => handleProductSelect(item.id)} />
     }
 
     if(error){
