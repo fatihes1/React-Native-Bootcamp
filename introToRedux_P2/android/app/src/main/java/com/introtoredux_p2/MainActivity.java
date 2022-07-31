@@ -6,7 +6,10 @@ import com.facebook.react.ReactRootView;
 import android.os.Bundle;
 
 public class MainActivity extends ReactActivity {
-
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
+  }
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.
@@ -15,10 +18,7 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "introToRedux_P2";
   }
-  @Override
-protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate(null);
-}
+
   /**
    * Returns the instance of the {@link ReactActivityDelegate}. There the RootView is created and
    * you can specify the renderer you wish to use - the new renderer (Fabric) or the old renderer
