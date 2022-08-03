@@ -6,6 +6,11 @@ export default StyleSheet.create({
         marginVertical : 8,
         backgroundColor : 'white',
         borderRadius: 5,
-        paddingHorizontal : 8
+        paddingHorizontal : 8,
+        flexDirection : 'row',
+        alignItems : 'center'
+    },
+    input : {
+        flex : 1,
     }
 })
