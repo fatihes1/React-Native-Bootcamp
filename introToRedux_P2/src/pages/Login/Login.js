@@ -1,14 +1,16 @@
 import React from 'react';
-import { SafeAreaView, Text, View, Image } from 'react-native';
+import { SafeAreaView, Text, View, Image, Alert } from 'react-native';
 import { Formik } from 'formik'
-
+import Config from 'react-native-config';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 import styles from './Login.style';
+import usePost from '../../hooks/usePost';
 
 const Login = () => {
+    const {data, loading, error, post} = usePost();
 
     const handleLogin = (values) => {
         // Formik componentin gereksiz yere render olmasından kurtarır.
@@ -16,8 +18,16 @@ const Login = () => {
         // state güncellemesi render'i tetikler
         // formikle birlikte validation için 'yup' paketi ile kullanılır.
         // console.log(values);
+        post(Config.API_URL, values);
     }
 
+    if(error) {
+        Alert.alert('Dükkan', 'Kullanıcı bulunamadı');
+    }
+    console.log(data);
+    // m38rmF$
+    // "username": "kevinryan",
+// "password": "kev02937@"
 
     return (
         <SafeAreaView style={styles.container}>
@@ -43,7 +53,7 @@ const Login = () => {
                         iconName="key"
                         isSecure={true}
                     />
-                    <Button text="Giriş Yap" onPress={handleSubmit} />
+                    <Button text="Giriş Yap" onPress={handleSubmit} loading={loading}/>
                 </View>)}
             </Formik>
         </SafeAreaView>
