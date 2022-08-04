@@ -9,7 +9,7 @@ import Input from '../../components/Input';
 import styles from './Login.style';
 import usePost from '../../hooks/usePost';
 
-const Login = () => {
+const Login = ({navigation}) => {
     const {data, loading, error, post} = usePost();
 
     const handleLogin = (values) => {
@@ -18,16 +18,23 @@ const Login = () => {
         // state güncellemesi render'i tetikler
         // formikle birlikte validation için 'yup' paketi ile kullanılır.
         // console.log(values);
-        post(Config.API_URL, values);
+        // console.log(values);
+        post(Config.API_LOGIN + "/login", values);
     }
 
     if(error) {
-        Alert.alert('Dükkan', 'Kullanıcı bulunamadı');
+        Alert.alert('Dükkan', 'Bir hata oluştu');
     }
-    console.log(data);
-    // m38rmF$
-    // "username": "kevinryan",
-// "password": "kev02937@"
+
+    if(data){
+        if(data.status === "Error") {
+            Alert.alert('Dükkan', 'Kullanıcı bulunamadı');
+        }else {
+            navigation.navigate('ProductsPage');
+        }
+    }
+    // "username": "johnd",
+    // "password": "m38rmF$",
 
     return (
         <SafeAreaView style={styles.container}>
