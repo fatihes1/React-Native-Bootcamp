@@ -1,7 +1,7 @@
 import React from "react";
-import { SafeAreaView, Text, Image, View, FlatList, Button}from "react-native";
+import { SafeAreaView, Text, Image, View, FlatList}from "react-native";
 import Config from "react-native-config";
-import {useDispatch} from "react-redux";
+import { useSelector} from "react-redux";
 
 
 import styles from './Products.style';
@@ -15,7 +15,7 @@ import Error from '../../components/Error';
 
 
 const Products = ({navigation}) => {
-    const dispatch = useDispatch();
+    const user = useSelector(s => s.user);
 
     // CUSTOM HOOK USAGE
     const {error, loading, data} = useFetch(Config.API_URL);
@@ -38,7 +38,10 @@ const Products = ({navigation}) => {
     
     return(
         <SafeAreaView>
-            <Button title="Logout" onPress={() => dispatch({type : 'SET_USER', payload : {user: null}})} />
+            {/* <Button title="Logout" onPress={() => dispatch({type : 'SET_USER', payload : {user: null}})} /> */}
+            <Text>
+                Hello, {user.name.firstname.toUpperCase()}
+            </Text>
             <FlatList data={data} renderItem={renderProduct} />
         </SafeAreaView>
     )
