@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "824843790936",
+    "project_id": "introtofirebase-rn",
+    "storage_bucket": "introtofirebase-rn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824843790936:android:374357ecda9b23ee34f82d",
+        "android_client_info": {
+          "package_name": "com.introtofirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824843790936-g25pnb8m7a68al8d8vthnrpk58jrdi45.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdLHNYCFW0Z8vldAX-wSN4s58nqeRjpn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824843790936-g25pnb8m7a68al8d8vthnrpk58jrdi45.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
