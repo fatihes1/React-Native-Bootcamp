@@ -20,14 +20,46 @@ export default () => {
     const reference = database().ref('books/');
     reference.on('value', snapshot => {
       console.log('User data: ', snapshot.val());
-      });;
-   }
+    });;
+  }
+
+  const setDB = () => {
+    const reference = database().ref('car/rentable');
+    reference.set({
+      brand: 'Audi',
+      model: 'A4',
+      price: 128,
+    })
+      .then(() => console.log('Data set.'));
+  }
+
+  const updateDB = () => {
+    const reference = database().ref('car/rentable');
+    reference.update({
+      price: 150,
+    })
+      .then(() => console.log('Data updated.'));
+  }
+
+  // Array gibi verilen path içerisine değer push eder.
+  const pushDB = () => {
+    const reference = database().ref('car/rentable');
+    reference.push({
+      brand: 'BMW',
+      model: 'X5',
+      price: 150,
+    })
+      .then(() => console.log('Data pushed.'));
+  }
 
   return (
     <SafeAreaView>
       <Text style={{ fontSize: 60 }}>Hello Firbase</Text>
       <Button title='Check DB' onPress={checkDB} />
       <Button title='Listen DB' color='green' onPress={listenDB} />
+      <Button title='Set DB' color='red' onPress={setDB} />
+      <Button title='Update DB' color='blue' onPress={updateDB} />
+      <Button title='Push DB' color='cyan' onPress={pushDB} />
     </SafeAreaView>
   )
 }
