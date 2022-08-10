@@ -1,9 +1,8 @@
-import React from "react";
-import {StyleSheet, Text, View} from "react-native";
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
-
-const MessageCard = (props) => {
-    return null
- }
+const MessageCard = props => {
+  return null;
+};
 
 export default MessageCard;
