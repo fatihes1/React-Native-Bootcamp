@@ -12,6 +12,6 @@ export default StyleSheet.create({
   },
   input: {
     flex: 1,
-    padding: Platform.OS === 'android' ? 0 : 5,
+    padding: Platform.OS === 'android' ? 5 : 8,
   },
 });
