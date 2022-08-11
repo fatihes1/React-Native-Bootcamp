@@ -26,4 +26,29 @@ export default StyleSheet.create({
     color: 'white',
     marginTop: 8,
   },
+  dislike_count_container: {
+    backgroundColor: Colors.themeblue,
+    padding: 3,
+    borderRadius: 20,
+    marginRight: 3,
+  },
+  dislike_container: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    padding: 3,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+  },
+  dislike_text: {
+    color: Colors.themeblue,
+    fontWeight: 'bold',
+  },
+  dislike_count_text: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  footer: {
+    alignItems: 'flex-end',
+  },
 });

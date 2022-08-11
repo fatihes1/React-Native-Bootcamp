@@ -21,7 +21,7 @@ const Messages = () => {
       if (!contentData) {
         return;
       }
-      const parsedData = parseContentData(contentData);
+      const parsedData = parseContentData(contentData || {});
       setContentList(parsedData);
     });
   }, []);
@@ -42,6 +42,7 @@ const Messages = () => {
       text: content,
       username: userMail.split('@')[0],
       date: new Date().toISOString(),
+      dislike: 0,
     };
     console.log(contentObject);
 
@@ -49,7 +50,17 @@ const Messages = () => {
     reference.push(contentObject);
   };
 
-  const renderContent = ({item}) => <MessageCard message={item} />;
+  const handleBanane = item => {
+    const reference = firebase
+      .app()
+      .database(Config.DB_URL)
+      .ref(`/messages/${item.id}`);
+    reference.update({dislike: item.dislike + 1});
+  };
+
+  const renderContent = ({item}) => (
+    <MessageCard message={item} onBanane={() => handleBanane(item)} />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
