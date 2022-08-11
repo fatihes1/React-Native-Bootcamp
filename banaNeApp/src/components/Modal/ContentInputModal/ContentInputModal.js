@@ -14,7 +14,7 @@ const ContentInputModal = ({visible, onClose, onSend}) => {
     }
     onSend(text);
     setText(null);
-    onClose(); // İçerik gönderiltikten sonra Modal oto kapatılır.
+    // onClose(); // İçerik gönderiltikten sonra Modal oto kapatılır.
   };
 
   return (
